@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signin</title>
+</head>
+<body>
+    <h1>User Signin</h1>
+    <form action="">
+        <input type="text" placeholder="username" name="username">
+        <input type="text" placeholder="password" name="password">
+    </form>
+    <p>If you don't have a user account: <a href="{% url 'authentication:user-register' %}"> Register</a></p>
+    <p>If you are a landlord instead: <a href="{% url 'authentication:landlord-signin' %}"> Register</a></p>
+</body>
+</html>

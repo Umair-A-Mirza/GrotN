@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Register</title>
+</head>
+<body>
+    <h1>Landlord Register</h1>
+    <form action="">
+        <input type="text" placeholder="username" name="username">
+        <input type="text" placeholder="password" name="password">
+    </form>
+    <p>If you already have a landlord account: <a href="{% url 'authentication:landlord-signin' %}"> Sign in</a></p>
+    <p>If you are a user instead: <a href="{% url 'authentication:user-register' %}"> Register</a></p>
+</body>
+</html>
