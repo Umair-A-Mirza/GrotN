@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>Live Anywhere, Pay Less, Live Together.</h1>
+    {% if user.is_authenticated %}
+        <h2>Welcome, {{ user.username }}</h2>
+        <a href="{% url 'authentication:signout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'authentication:tenant-signin' %}">Tenant Sign In</a>
+        <a href="{% url 'authentication:tenant-register' %}">Tenant Register</a>
+        <a href="{% url 'authentication:landlord-signin' %}">Landlord Sign In</a>
+        <a href="{% url 'authentication:landlord-register' %}">Landlord Register</a>
+    {% endif %}
+</body>
+</html>
