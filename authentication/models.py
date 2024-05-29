@@ -6,7 +6,7 @@ class Tenant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     budget = models.IntegerField(null=True)
     desiredLocation = models.CharField(max_length=100, null=True)
-    roommate = models.BooleanField(null=True)
+    roommate = models.BooleanField(null=True, default=False)
     about = models.TextField(null=True)
 
     def __str__(self): 

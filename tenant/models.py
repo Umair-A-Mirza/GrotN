@@ -1,14 +1,14 @@
 from django.db import models
-from ..authentication.models import Tenant
+from authentication.models import Tenant
 
 # Create your models here.
 
 class Match(models.Model):
-    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE)
+    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name='tenant1')
     tenant_status = models.BooleanField(default=False)
-    partner = models.ForeignKey(Tenant, on_delete=models.CASCADE)
+    partner = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name='tenant2', null=True, blank=True)
     partner_status = models.BooleanField(null=True, blank=True)
-    status = tenant_status and partner_status
+    status = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):

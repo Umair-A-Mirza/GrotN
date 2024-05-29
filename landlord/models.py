@@ -20,12 +20,14 @@ class House(models.Model):
         return self.address
     
 
-class Match(models.Model):
+class Housing(models.Model):
     match_id = models.AutoField(primary_key=True, unique=True, editable=False)
-    tenant = models.ForeignKey('authentication.Tenant', on_delete=models.CASCADE, null=False)
+    tenants = models.ForeignKey('tenant.Match', on_delete=models.CASCADE, null=False)
     house = models.ForeignKey(House, on_delete=models.CASCADE, null=False)
     approved = models.BooleanField(default=False)
-    is_active = models.BooleanField(efault=True)
+    is_active = models.BooleanField(default=True)
+    paid1 = models.BooleanField(default=False)
+    paid2 = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.tenant + ' ' + self.house
+        return self.tenants + ' ' + self.house

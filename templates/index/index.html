@@ -2,19 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Index Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Stylesheets -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/prism/prism.css' %}"/>
+    
+    <link rel="stylesheet" href="{% static 'vendor/phosphor-icons/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+    <link rel="icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+
 </head>
 <body>
-    <h1>Live Anywhere, Pay Less, Live Together.</h1>
-    {% if user.is_authenticated %}
-        <h2>Welcome, {{ user.username }}</h2>
-        <a href="{% url 'authentication:signout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'authentication:tenant-signin' %}">Tenant Sign In</a>
-        <a href="{% url 'authentication:tenant-register' %}">Tenant Register</a>
-        <a href="{% url 'authentication:landlord-signin' %}">Landlord Sign In</a>
-        <a href="{% url 'authentication:landlord-register' %}">Landlord Register</a>
-    {% endif %}
+    <!-- 
+  #############
+  Navigation Menu
+  #############
+  -->
+  {% include 'index/_header.html' %}
+  
+  <!-- 
+    #############
+    Hero V2 Section
+    #############
+  -->
+  {% include 'index/_hero.html' %}
+  
+  <!--
+    ###########
+    Counter Section
+    ###########
+  -->
+  {% include 'index/_counter.html' %}
+  
+  <!-- 
+    #############
+    Properties Section
+    #############
+  -->
+  {% include 'index/_properties.html' %}
+  
+  <!-- 
+    #############
+    Services Section
+    #############
+  -->
+  {% include 'index/_services.html' %}  
+  
+  <!-- 
+    #############
+    Feature Section
+    #############
+  -->
+  {% include 'index/_feature.html' %}
+  
+  <!-- 
+    #############
+    Testimonial V2 Section
+    #############
+  -->
+  {% include 'index/_testimonial.html' %}
+  
+  <!-- 
+    #############
+    Blog Home Section
+    #############
+  -->
+  {% include 'index/_blog_home.html' %}
+
+  <!-- 
+    #############
+    Footer Navigation Section
+    #############
+  -->
+  {% include 'index/_footer.html' %}
+  
+  <!-- 
+    #############
+    Login Modals Section
+    #############
+  -->
+  {% include 'index/_login_modal.html' %}
+
+
+
+  <!-- Mark up for Script Section-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0&libraries=geometry"></script>
+  <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/prism/prism.js' %}"></script>
+  <script src="{% static 'vendor/isotope/isotope.min.js' %}"></script>
+  <script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor//counter-up/countup.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/scrollit/scrollit.min.js' %}"></script>
+  <script src="{% static 'vendor/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
