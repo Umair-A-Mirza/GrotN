@@ -8,18 +8,18 @@ from .models import Tenant, Landlord
 # Create your views here.
 
 def tenant_signin(request): 
-    print("Tenant sign in")
     if request.method == 'POST': 
         data = request.POST
+        print(data)
         user = authenticate(username=data.get("email", ""), password=data.get("password", ""))
         if user is not None: 
             login(request, user)
             return redirect('/')
         else: 
             print("Invalid credentials")
-            return render(request, 'auth/tenant-signin.html')
+            return redirect('/', message='Invalid Credentials for Tenant Signin.')
         
-    return render(request, 'auth/tenant-signin.html')
+    return redirect('/', message='Open Tenant Signin Page.')
 
 def tenant_register(request): 
     if request.method == 'POST': 
@@ -28,15 +28,22 @@ def tenant_register(request):
                                         email=data.get("email", ""), 
                                         password=data.get("password", ""),
                                         first_name="tenant")
-        tenant = Tenant(user=user)
+
+        tenant = Tenant(
+            user=user, 
+            fullName=data.get("name", ""),
+            phoneNumber=data.get("phone", ""),
+            budget=data.get("budget", ""),
+            desiredLocation=data.get("address", ""),
+            roommate=True if data.get("roommate", False)=="yes" else False
+        )
         
         user.save()
         tenant.save()
         login(request, user)
         return redirect('/')
 
-    return render(request, 'auth/tenant-register.html')
-
+    return redirect('/', message='Open Tenant Register Page.')
 
 
 def landlord_signin(request): 
@@ -48,9 +55,9 @@ def landlord_signin(request):
             return redirect('/')
         else: 
             print("Invalid credentials")
-            return render(request, 'auth/landlord-signin.html')
+            return redirect('/', message='Invalid Credentials for Landlord Signin.')
 
-    return render(request, 'auth/landlord-signin.html')
+    return redirect('/', message='Open Landlord Signin Page.')
 
 def landlord_register(request): 
     if request.method == 'POST': 
@@ -59,14 +66,22 @@ def landlord_register(request):
                                         email=data.get("email", ""), 
                                         password=data.get("password", ""),
                                         first_name="landlord")
-        landlord = Landlord(user=user)
+        landlord = Landlord(
+            user=user, 
+            fullName=data.get("name", ""),
+            phoneNumber=data.get("phone", ""),
+            noHouses=data.get("houses", "")
+        )
+
+        print(f"\n\nLandlord: {landlord}\n\n")
         
         user.save()
         landlord.save()
         login(request, user)
         return redirect('/')
 
-    return render(request, 'auth/landlord-register.html')
+    return redirect('/', message='Open Landlord Register Page.')
+
 
 def signout(request): 
     logout(request)

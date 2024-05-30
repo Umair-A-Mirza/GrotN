@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tenant Home</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Stylesheets -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/prism/prism.css' %}"/>
+    
+    <link rel="stylesheet" href="{% static 'vendor/phosphor-icons/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+    <link rel="icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+</head>
+<body>
+     <!-- 
+  #############
+  Navigation Menu
+  #############
+  -->
+  {% include 'tenant/_header.html' with name1="Go to Profile" url1="tenant:profile" name2="Housing" url2="tenant:housing" %}
+  
+  <br><br><br><br>
+  <h1>Matches</h1>
+  {% if user.is_authenticated %}
+    <p>Welcome {{ user.username }}</p>
+  {% endif %}
+
+  
+  <!-- 
+    #############
+    Footer Navigation Section
+    #############
+  -->
+  {% include 'tenant/_footer.html' %}
+  
+  <!-- Mark up for Script Section-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0&libraries=geometry"></script>
+  <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/prism/prism.js' %}"></script>
+  <script src="{% static 'vendor/isotope/isotope.min.js' %}"></script>
+  <script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor//counter-up/countup.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/scrollit/scrollit.min.js' %}"></script>
+  <script src="{% static 'vendor/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

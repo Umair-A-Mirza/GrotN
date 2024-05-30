@@ -1,0 +1,80 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-white" id="navigationBar">
+      <div class="container-fluid navbar-container">
+        <div class="d-flex align-items-center">
+          <a class="navbar-brand" href="/">
+            {% load static %}
+            <img src="{% static 'images/newlogo.png' %}" alt="logo" height="35">
+          </a>
+          <a href="tel:2329872 " class="navbar-number align-items-center">
+            <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="3" cy="3.5" r="3" fill="#417086"/>
+            </svg>
+            <i class="ph-phone-bold"></i>
+            (546) 232 - 9872         
+          </a>
+        </div>
+        <div class=" d-none d-sm-flex navbar-search align-items-center ms-auto ms-lg-0 order-lg-last">
+          <ul class="list-unstyled m-0">
+          </ul>
+          {% if user.is_authenticated %}
+            <button disabled style="cursor: default;" class="btn btn-small btn-outline" role="button">
+              <i class="ph-user-bold"></i>
+              {{ user.username }}
+            </button>
+          {% endif %}
+          <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+        </div>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="open ">
+            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="1" y1="14.4004" x2="23" y2="14.4004" stroke="#1C4456" stroke-width="2" stroke-linecap="round"/>
+              <line x1="1" y1="8.40039" x2="23" y2="8.40039" stroke="#1C4456" stroke-width="2" stroke-linecap="round"/>
+              <line x1="1" y1="1.2002" x2="23" y2="1.2002" stroke="#1C4456" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+              Menu
+          </span>
+          
+          <span class="close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"/>
+              <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Close              
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{% url url1 %}">{{name1}}</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link " href="{% url url2 %}" >
+                {{name2}}
+              </a>
+            </li>
+            
+            <p>{{link}}</p>
+
+            <li class="nav-item d-none d-sm-inline-block d-lg-none">
+              {% if user.is_authenticated %}
+                  <p>Welcome, {{ user.username }}</p>
+              {% endif %}
+              <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+            </li>
+          </ul>
+          <div class="d-flex navbar-search align-items-center ms-auto ms-lg-0 order-lg-last d-sm-none">
+            <ul class="list-unstyled m-0 search-dropdown">
+              {% if user.is_authenticated %}
+                  <p>Welcome, {{ user.username }}</p>
+              {% endif %}
+            </ul>
+            <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
