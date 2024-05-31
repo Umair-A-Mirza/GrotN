@@ -14,7 +14,7 @@ def matches(request):
     return render(request, 'landlord/matches.html')
 
 def edit_house(request, house_id):
-    house = House.objects.get(house_id=house_id)
+    house = House.objects.filter(house_id=house_id).first()
     return render(request, 'landlord/edit_house.html', {'house': house})
 
 def new_house(request): 

@@ -23,7 +23,7 @@
               {{ user.username }}
             </button>
           {% endif %}
-          <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+          <a class="btn btn-small btn-outline" href="{% url 'authentication:signout' %}" role="button">Logout</a>
         </div>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="open ">
@@ -63,7 +63,7 @@
               {% if user.is_authenticated %}
                   <p>Welcome, {{ user.username }}</p>
               {% endif %}
-              <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+              <a class="btn btn-small btn-outline" href="{% url 'authentication:signout' %}" role="button">Logout</a>
             </li>
           </ul>
           <div class="d-flex navbar-search align-items-center ms-auto ms-lg-0 order-lg-last d-sm-none">
@@ -72,7 +72,7 @@
                   <p>Welcome, {{ user.username }}</p>
               {% endif %}
             </ul>
-            <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{% url 'authentication:signout' %}" role="button">Logout</a>
+            <a class="btn btn-small btn-outline" href="{% url 'authentication:signout' %}" role="button">Logout</a>
           </div>
         </div>
       </div>
