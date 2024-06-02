@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Add New House - GrotN</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Stylesheets -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/prism/prism.css' %}"/>
+    
+    <link rel="stylesheet" href="{% static 'vendor/phosphor-icons/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+    <link rel="icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+</head>
+<body>
+     <!-- 
+  #############
+  Navigation Menu
+  #############
+  -->
+  {% include 'tenant/_header.html' with name1="Home" url1="landlord:houses" name2="Housing" url2="landlord:matches" %}
+
+  <!-- 
+  #############
+  Profile Form Section
+  #############
+-->
+<section class="contact" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
+  <div class="container">
+    <div class="row">
+      <div class="">
+        <div class="contact-title text-center">
+          <h1>Add New House</h1>
+          <p>Add a new house to your profile so that 
+            suitable tenants can be matched with it.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form-items"
+          method="POST"
+          action="{% url 'tenant:profile' %}">
+        {% csrf_token %}
+      <h4>House Information</h4>
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-pen"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Title">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-money"></i>
+        </span>
+        <input min="0" max="99999" type="number" class="form-control" placeholder="Price (€)" name="price">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-arrows-out"></i>
+        </span>
+        <input min="0" max="10000" type="number" class="form-control" placeholder="Size (sq meters)" name="size">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-bed"></i>
+        </span>
+        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bedrooms" name="bedrooms">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-shower"></i>
+        </span>
+        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bathrooms" name="bathrooms">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-house"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="City">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-house"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="District">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-map-pin"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Full Address">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" >
+          <i class="ph-users"></i>
+        </span>
+        <select class="form-control" name="roommate">
+          <option selected disabled>Open to Hosting Roommates</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <div>
+      <div class="input-group">
+        <textarea class="form-control" placeholder="More about the house.. (optional)" rows="15" cols="20"></textarea>
+      </div>
+      <div class="w-100 contact-form-button content-center">
+        <button type="submit" class="btn btn-large">Save</button>
+      </div>
+      </div>
+    </form>
+  </div>
+</section>
+  
+  <!-- 
+    #############
+    Footer Navigation Section
+    #############
+  -->
+  {% include 'tenant/_footer.html' %}
+  
+  <!-- Mark up for Script Section-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0&libraries=geometry"></script>
+  <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/prism/prism.js' %}"></script>
+  <script src="{% static 'vendor/isotope/isotope.min.js' %}"></script>
+  <script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor//counter-up/countup.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/scrollit/scrollit.min.js' %}"></script>
+  <script src="{% static 'vendor/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

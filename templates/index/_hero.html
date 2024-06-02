@@ -3,7 +3,11 @@
       <div class="row">
         <div class="col-xl-8 col-lg-10 mx-auto">
           <div class="hero-shape">
-            <img src="images/hero/hero-bg-2.png" alt="hero-bg">
+            {% load static %}
+            <img src="{% static 'images/hero-bg.webp' %}" alt="hero-bg">
+            {% comment %}
+            https://static.vecteezy.com/system/resources/previews/027/241/451/original/seamless-horizontal-pattern-with-vintage-houses-buying-a-house-housewarming-drawing-on-transparent-background-png.png
+            {% endcomment %}
           </div>
           <div class="hero-content text-center" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
              <h1 class="hero-content-title">
@@ -17,9 +21,8 @@
           <div class="hero-form" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
             <nav>
               <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-buy-tab" data-bs-toggle="tab" data-bs-target="#nav-buy" type="button" role="tab" aria-controls="nav-buy" aria-selected="true">Buy</button>
-                <button class="nav-link" id="nav-sell-tab" data-bs-toggle="tab" data-bs-target="#nav-sell" type="button" role="tab" aria-controls="nav-sell" aria-selected="false">Sell</button>
-                <button class="nav-link" id="nav-rent-tab" data-bs-toggle="tab" data-bs-target="#nav-rent" type="button" role="tab" aria-controls="nav-rent" aria-selected="false">Rent</button>
+                <button class="nav-link active" id="nav-buy-tab" data-bs-toggle="tab" data-bs-target="#nav-buy" type="button" role="tab" aria-controls="nav-buy" aria-selected="true">Tenant</button>
+                <button class="nav-link" id="nav-rent-tab" data-bs-toggle="tab" data-bs-target="#nav-rent" type="button" role="tab" aria-controls="nav-rent" aria-selected="false">Landlord</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -78,72 +81,10 @@
                   </div>
       
                   <div class="col-md-2 col-sm-6 text-md-end">
-                    <button class="btn btn-large submit-button d-flex align-items-center w-100 justify-content-center" type="submit">
-                      <i class="ph-magnifying-glass-bold"></i>
-                      <span class="d-md-none d-inline-block">Search</span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div class="tab-pane fade" id="nav-sell" role="tabpanel" aria-labelledby="nav-sell-tab">
-                <form class="row align-items-center gutter-2">
-                  <div class="col-md-3 col-6">
-                    <label class="form-label">City/Street</label>
-                    <div class="dropholder">
-                      <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>New York City</p>
-                        <i class="ph-map-pin-bold"></i>
-                      </div>
-                      <ul class="dropdownMenu">
-                        <li>New York City</li>
-                        <li>Washington DC</li>
-                        <li>Florida</li>
-                        <li>Orlendo</li>
-                        <li>Alaska</li>
-                        <li>Mexico City</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-6">
-                    <label class="form-label">Property Type</label>
-                    <div class="dropholder">
-                      <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>Duplex House</p>
-                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
-                          <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
-                        </svg>                        
-                      </div>
-                      <ul class="dropdownMenu">
-                        <li>Duplex House</li>
-                        <li>Single House</li>
-                        <li>Multiplex House</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-8">
-                    <label class="form-label">Property Price</label>
-                    <div class="dropholder">
-                      <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>$15000 - $350000</p>
-                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
-                          <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
-                        </svg>                        
-                      </div>
-                      <ul class="dropdownMenu">
-                        <li>$15000 - $350000</li>
-                        <li>$10000 - $30000</li>
-                        <li>$20000 - $40000</li>
-                      </ul>
-                    </div>
-                  </div>
-      
-                  <div class="col-md-2 col-sm-6 text-md-end">
-                    <button class="btn btn-large submit-button d-flex align-items-center w-100 justify-content-center" type="submit">
-                      <i class="ph-magnifying-glass-bold"></i>
-                      <span class="d-md-none d-inline-block">Search</span>
-                    </button>
+                    <a role="button" data-bs-toggle="modal" href="#createAccount" class="btn btn-large submit-button d-flex align-items-center w-100 justify-content-center" type="submit">
+                      <i class="ph-arrow-right-bold"></i>
+                      <span class="d-md-none d-inline-block">Start</span>
+                    </a>
                   </div>
                 </form>
               </div>
@@ -202,10 +143,10 @@
                   </div>
       
                   <div class="col-md-2 col-sm-6 text-md-end">
-                    <button class="btn btn-large submit-button d-flex align-items-center w-100 justify-content-center" type="submit">
-                      <i class="ph-magnifying-glass-bold"></i>
-                      <span class="d-md-none d-inline-block  ms-1">Search</span>
-                    </button>
+                    <a role="button" data-bs-toggle="modal" href="#createLandlordAccount" class="btn btn-large submit-button d-flex align-items-center w-100 justify-content-center" type="submit">
+                      <i class="ph-arrow-right-bold"></i>
+                      <span class="d-md-none d-inline-block ms-1">Start</span>
+                    </a>
                   </div>
                 </form>
               </div>
