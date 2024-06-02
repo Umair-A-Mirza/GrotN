@@ -1,26 +1,23 @@
-<section class="properties" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
+<section class="properties" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000"
+style="border-top: .5px solid #c7e6f4; padding-top: 7.25rem; padding-bottom: 4.25rem; margin-bottom: 0;">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-center justify-content-between properties-header">
             <h3>Featured Properties</h3>
-            <a href="listing.html"  class="d-md-flex align-items-center d-none">
-              <span>Explore All </span>
+            <a href="#login" data-bs-toggle="modal" class="d-md-flex align-items-center d-none">
+              <span>Explore More </span>
               <i class="ph-arrow-right"></i> 
             </a>
           </div>
           <div class="button-group filters-button-group properties-filter">  
-            <button class="button  is-checked" data-filter=".resident">Resident Property</button>
-            <button class="button" data-filter=".commercial">Commercial Property</button>
-            <button class="button" data-filter=".industrial">Industrial Property</button>
-            <button class="button" data-filter=".agriculture">Agriculture Property</button>
           </div>
         </div>
       </div>
       <div class="grid row row-cols-xl-3 row-cols-md-2 g-4">
         <div class="properties-card industrial commercial resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties1.png" alt="properties1">
+            <img src="images/properties/properties1.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -59,7 +56,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -67,7 +64,7 @@
         
         <div class="properties-card agriculture resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties2.png" alt="properties1">
+            <img src="images/properties/properties2.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -106,7 +103,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -114,7 +111,7 @@
   
         <div class="properties-card industrial commercial resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties3.png" alt="properties1">
+            <img src="images/properties/properties3.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -153,7 +150,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -161,7 +158,7 @@
   
         <div class="properties-card agriculture commercial resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties4.png" alt="properties1">
+            <img src="images/properties/properties4.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -200,7 +197,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -208,7 +205,7 @@
   
         <div class="properties-card industrial resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties5.png" alt="properties1">
+            <img src="images/properties/properties5.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -247,7 +244,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -255,7 +252,7 @@
   
         <div class="properties-card agriculture resident">
           <div class="properties-card--thumb">
-            <img src="images/properties/properties6.png" alt="properties1">
+            <img src="images/properties/properties6.png" alt="">
           </div>
           <div class="properties-card--content ">
             <div class="d-flex align-items-center properties-card--content--address">
@@ -294,7 +291,7 @@
               </li>
             </ul>
             <div class="properties-card--footer d-flex align-items-center justify-content-between">
-              <a href="property-details.html" class="btn btn-small">View Details</a>
+              <a href="{% url 'tenant:view_house' 1 %}" class="btn btn-small">View Details</a>
               <h5>$649,900</h5>
             </div>
           </div> 
@@ -303,8 +300,8 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <a href="listing.html"  class="btn btn-small btn-outline btn-mobile d-md-none align-items-center d-flex w-auto">
-            <span>Explore All </span>
+          <a href="#login" data-bs-toggle="modal" class="btn btn-small btn-outline btn-mobile d-md-none align-items-center d-flex w-auto">
+            <span>Explore More </span>
             <i class="ph-caret-right"></i>
           </a>
         </div>

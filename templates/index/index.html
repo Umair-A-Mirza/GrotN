@@ -31,8 +31,8 @@
   Navigation Menu
   #############
   -->
-  {% include 'index/_header.html' %}
-  
+  {% include 'index/_header.html' with page='index' %}
+
   <!-- 
     #############
     Hero V2 Section
@@ -46,14 +46,7 @@
     ###########
   -->
   {% include 'index/_counter.html' %}
-  
-  <!-- 
-    #############
-    Properties Section
-    #############
-  -->
-  {% include 'index/_properties.html' %}
-  
+    
   <!-- 
     #############
     Services Section
@@ -68,19 +61,31 @@
   -->
   {% include 'index/_feature.html' %}
   
+    <!-- 
+    #############
+    Properties Section
+    #############
+  -->
+  {% include 'index/_properties.html' %}
+
+
+  {% comment %}
   <!-- 
     #############
     Testimonial V2 Section
     #############
   -->
-  {% include 'index/_testimonial.html' %}
+  {% include 'index/_testimonial.html' %} 
   
   <!-- 
     #############
     Blog Home Section
     #############
   -->
-  {% include 'index/_blog_home.html' %}
+  {% include 'index/_blog_home.html' %} 
+  {% endcomment %}
+
+
 
   <!-- 
     #############

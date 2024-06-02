@@ -11,8 +11,17 @@ def index(request):
     elif request.user.first_name == "tenant":
         return redirect('tenant:matches')
 
-    return redirect('/')
+    return render(request, 'index/index.html')
 
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def tos(request):
+    return render(request, 'tos.html')
 
 def custom_404(request, exception=None):
     return render(request, '404.html', {}, status=404)

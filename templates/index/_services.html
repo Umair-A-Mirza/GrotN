@@ -1,21 +1,23 @@
-<section class="service" >
+<section class="service" 
+style="border: 0; padding: 0; margin-bottom: 6.25rem;">
     <div class="container">
       <div class="row">
         <div class="col-lg-5">
           <div class="service-title">
             <h3>Simple & easy way to find your dream apartment</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <p>Your steps to finding our well-picked perfect house and housemate for you.</p>
           </div>
         </div>
-      </div>
+      </div> 
       <div class="row service-top" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
         <div class="col-lg-9 col-sm-12">
           <div class="row">
             <div class="col-lg-5 col-sm-6">
               <div class="service-card">
-                <img src="images/services/service1.png" alt="" class="service-card--thumb">
+                {% load static %}
+                <img src="{% static 'images/undraw_mail_sent_re_0ofv.svg' %}" alt="service1" class="service-card--thumb" height="200">
                 <div class="service-card--content">
-                  <h4>1. Search your location</h4>
+                  <h4>1. Set up your profile</h4>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   </p>
@@ -24,9 +26,9 @@
             </div>
             <div class="col-lg-5 offset-lg-1 col-sm-6">
               <div class="service-card">
-                <img src="images/services/service2.png" alt="" class="service-card--thumb">
+                <img src="{% static 'images/undraw_team_spirit_re_yl1v.svg' %}" alt="service2" class="service-card--thumb" height="200">
                 <div class="service-card--content">
-                  <h4>2. Visit Apartment</h4>
+                  <h4>2. Get matched with roommates</h4>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   </p>
@@ -41,9 +43,9 @@
           <div class="row">
             <div class="col-lg-5 col-sm-6">
               <div class="service-card">
-                <img src="images/services/service3.png" alt="" class="service-card--thumb">
+                <img src="{% static 'images/undraw_house_searching_re_stk8.svg' %}" alt="service3" class="service-card--thumb" height="200">
                 <div class="service-card--content">
-                  <h4>3. Get your dream house</h4>
+                  <h4>3. Select a suitable house</h4>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   </p>
@@ -52,9 +54,9 @@
             </div>
             <div class="col-lg-5 offset-lg-1 col-sm-6">
               <div class="service-card">
-                <img src="images/services/service4.png" alt="" class="service-card--thumb">
+                <img src="{% static 'images/undraw_love_it_xkc2.svg' %}" alt="service4" class="service-card--thumb" height="200">
                 <div class="service-card--content">
-                  <h4>4. Enjoy your Apartment</h4>
+                  <h4>4. Enjoy your dream rental</h4>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   </p>

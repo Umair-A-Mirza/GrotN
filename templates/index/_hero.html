@@ -1,10 +1,10 @@
-<section class="hero hero-v2">
+<section style="padding-bottom: 130px" class="hero hero-v2">
     <div class="container">
       <div class="row">
         <div class="col-xl-8 col-lg-10 mx-auto">
           <div class="hero-shape">
             {% load static %}
-            <img src="{% static 'images/hero-bg.webp' %}" alt="hero-bg">
+            <img src="{% static 'images/hero-bg-test-new.png' %}" alt="hero-bg">
             {% comment %}
             https://static.vecteezy.com/system/resources/previews/027/241/451/original/seamless-horizontal-pattern-with-vintage-houses-buying-a-house-housewarming-drawing-on-transparent-background-png.png
             {% endcomment %}
@@ -26,56 +26,57 @@
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
+
+              <!-- Tenant -->
               <div class="tab-pane fade show active" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
                 <form class="row align-items-center gutter-2">
                   <div class="col-md-3 col-6">
                     <label class="form-label">City/Street</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>New York City</p>
+                        <p>Amsterdam</p>
                         <i class="ph-map-pin-bold"></i>
                       </div>
                       <ul class="dropdownMenu">
-                        <li>New York City</li>
-                        <li>Washington DC</li>
-                        <li>Florida</li>
-                        <li>Orlendo</li>
-                        <li>Alaska</li>
-                        <li>Mexico City</li>
+                        <li>Amsterdam</li>
+                        <li>Rotterdam</li>
+                        <li>The Hague</li>
+                        <li>Eindhoven</li>
+                        <li>Utrecht</li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-3 col-6">
-                    <label class="form-label">Property Type</label>
+                    <label class="form-label">Housing Preference</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>Duplex House</p>
+                        <p>With Roommate</p>
                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
                           <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
                         </svg>                        
                       </div>
                       <ul class="dropdownMenu">
-                        <li>Duplex House</li>
-                        <li>Single House</li>
-                        <li>Multiplex House</li>
+                        <li>With Roommate</li>
+                        <li>Solo Room</li>
+                        <li>Apartment</li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6 col-8">
-                    <label class="form-label">Property Price</label>
+                    <label class="form-label">Monthly Allowance</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>$15000 - $350000</p>
+                        <p>€250 - €750</p>
                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
                           <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
                         </svg>                        
                       </div>
                       <ul class="dropdownMenu">
-                        <li>$15000 - $350000</li>
-                        <li>$10000 - $30000</li>
-                        <li>$20000 - $40000</li>
+                        <li>€250 - €750</li>
+                        <li>€750 - €1500</li>
+                        <li>€1500 - €3000</li>
                       </ul>
                     </div>
                   </div>
@@ -88,56 +89,58 @@
                   </div>
                 </form>
               </div>
+
+
+              <!-- Landlord -->
               <div class="tab-pane fade" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
                 <form class="row align-items-center gutter-2">
                   <div class="col-md-3 col-6">
                     <label class="form-label">City/Street</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>New York City</p>
+                        <p>Amsterdam</p>
                         <i class="ph-map-pin-bold"></i>
                       </div>
                       <ul class="dropdownMenu">
-                        <li>New York City</li>
-                        <li>Washington DC</li>
-                        <li>Florida</li>
-                        <li>Orlendo</li>
-                        <li>Alaska</li>
-                        <li>Mexico City</li>
+                        <li>Amsterdam</li>
+                        <li>Rotterdam</li>
+                        <li>The Hague</li>
+                        <li>Eindhoven</li>
+                        <li>Utrecht</li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-3 col-6">
-                    <label class="form-label">Property Type</label>
+                    <label class="form-label">Housing Type</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>Duplex House</p>
+                        <p>Single Studio</p>
                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
                           <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
                         </svg>                        
                       </div>
                       <ul class="dropdownMenu">
-                        <li>Duplex House</li>
-                        <li>Single House</li>
-                        <li>Multiplex House</li>
+                        <li>Single Studio</li>
+                        <li>Apartment</li>
+                        <li>Dublex House</li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6 col-8">
-                    <label class="form-label">Property Price</label>
+                    <label class="form-label">Goal Rental Income</label>
                     <div class="dropholder">
                       <div class="customdropdown d-flex justify-content-between align-items-center">
-                        <p>$15000 - $350000</p>
+                        <p>€500 - €1000</p>
                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M8.33333 9L4.16667 14L0 9" fill="#417086"/>
                           <path d="M0.000163078 5L4.16683 -3.64256e-07L8.3335 5" fill="#417086"/>
                         </svg>                        
                       </div>
                       <ul class="dropdownMenu">
-                        <li>$15000 - $350000</li>
-                        <li>$10000 - $30000</li>
-                        <li>$20000 - $40000</li>
+                        <li>€500 - €1000</li>
+                        <li>€1000 - €5000</li>
+                        <li>€5000 - €30000</li>
                       </ul>
                     </div>
                   </div>

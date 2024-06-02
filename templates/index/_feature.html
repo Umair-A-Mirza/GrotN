@@ -1,29 +1,31 @@
-<section class="feature">
+<section class="feature" id="feature"
+style="padding-bottom: 0.5rem;">
     <div class="container">
       <div class="row align-items-center feature-top" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
         <div class="col-lg-6 order-lg-1 order-2">
           <div class="feature-content">
             <h3>
-              Simple & easy way to find your dream Apartment
+              AI-driven housing matching algorithm
             </h3>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed.
+              Our AI-driven roommate matching algorithm ensures that tenants are matched the most suitably. Later, AI's best-picked houses and tenants are matched, targeting long-term satisfaction. 
             </p>
-            <a href="#contact.html" class="btn btn-small">Get Started</a>
+            <a href="#createAccount" data-bs-toggle="modal" class="btn btn-small">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-lg-2 order-1">
           <div class="row">
             <div class="col-6 ">
               <div class="feature-grid-image">
-                <img src="images/feature/feature1.png" alt="feature1">
-                <img src="images/feature/feature2.png" alt="feature2">
+                {% load static %}
+                <img src="https://www.thoughtco.com/thmb/pLBZcqy7tRkyi_IpTJBjjm-hMZw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/collegeroommates-58d14bd65f9b581d7243490e.jpg" alt="feature1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuZccuExR5ZXFkW9xR3Q_v7fNLrT44AfCEZg&s" alt="feature4">
               </div>
             </div>
             <div class="col-6">
               <div class="feature-grid-image">
-                <img src="images/feature/feature3.png" alt="feature3">
-                <img src="images/feature/feature4.png" alt="feature4">
+                <img src="https://images.fosterwebmarketing.com/978/FAQ%20Tenant%20Landlord.jpg" alt="feature3">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/184126701.jpg?k=e2b56093ae5c35530018b10e93ee5243d0568c51fa7233d0ec6f97376b3cc460&o=&hp=1" alt="feature2">
               </div>
             </div>
           </div>
@@ -32,7 +34,7 @@
       <div class="row align-items-center feature-bottom" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" data-aos-delay="200">
         <div class="col-md-6 order-xl-1 order-md-2">
           <div class="feature-content-thumb">
-            <img src="images/feature/feature5.png" alt="feature">
+            <img src="{% static 'images/secure-payment.jpg' %}" alt="feature">
           </div>
         </div>
         <div class="col-md-6 col-lg-5 me-lg-auto ms-xl-auto order-xl-2 order-md-1">
@@ -41,14 +43,14 @@
               Secure payment system
             </h3>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. In a free hour, when our power of choice is untrammelled.
+              The entire payment is kept within the platform, within trusted users. This ensures that the transaction is secure and that the payment is only released when the transaction is completed.
             </p>
             <ul class="">
               <li>
-                <span class="bold">Find excellent deals</span>
+                <span class="bold">Low commission rates</span>
               </li>
               <li>
-                <span class="bold">Friendly host & Fast support</span>
+                <span class="bold">Full control with transaction</span>
               </li>
               <li>
                 <span class="bold">
@@ -56,7 +58,7 @@
                 </span>
               </li>
             </ul>
-            <a href="about.html" class="btn btn-small">Learn More</a>
+            <a href="{% url 'index:about' %}" class="btn btn-small">Learn More</a>
           </div>
         </div>
       </div>
