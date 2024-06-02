@@ -42,73 +42,88 @@
     <div class="row">
       <div class="">
         <div class="contact-title text-center">
-          <h1>Edit House 1</h1>
+          <h1>Edit Your House</h1>
           <p>Edit your house information so that more
             suitable tenants can be matched with it.
           </p>
+          {% if error %}
+            {% for key, value in error.items %}
+              <p style="color: #ff3050 !important;" class="error-msg">
+                {{ key }}: {{ value }}              
+              </p>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
 
     <form class="contact-form-items"
           method="POST"
-          action="{% url 'tenant:profile' %}">
+          action="{% url 'landlord:edit_house' house.house_id %}">
         {% csrf_token %}
       <h4>House Information</h4>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-pen"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Title">
+        <input type="text" class="form-control" placeholder="Title" name="title"
+        value="{{ house.title|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-money"></i>
         </span>
-        <input min="0" max="99999" type="number" class="form-control" placeholder="Price (€)" name="price">
+        <input min="0" max="99999" type="number" class="form-control" placeholder="Price (€)" name="price" 
+        value="{{ house.price|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-arrows-out"></i>
         </span>
-        <input min="0" max="10000" type="number" class="form-control" placeholder="Size (sq meters)" name="size">
+        <input min="0" max="10000" type="number" class="form-control" placeholder="Size (sq meters)" name="size"
+        value="{{ house.square_meters|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-bed"></i>
         </span>
-        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bedrooms" name="bedrooms">
+        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bedrooms" name="bedrooms"
+        value="{{ house.bedrooms|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-shower"></i>
         </span>
-        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bathrooms" name="bathrooms">
+        <input min="0" max="10" type="number" class="form-control" placeholder="# of Bathrooms" name="bathrooms"
+        value="{{ house.bathrooms|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-house"></i>
         </span>
-        <input type="text" class="form-control" placeholder="City">
+        <input type="text" class="form-control" placeholder="City" name="city"
+        value="{{ house.city|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-house"></i>
         </span>
-        <input type="text" class="form-control" placeholder="District">
+        <input type="text" class="form-control" placeholder="District" name="district"
+        value="{{ house.district|default:'' }}">
       </div>
 
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-map-pin"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Full Address">
+        <input type="text" class="form-control" placeholder="Full Address" name="address"
+        value="{{ house.address|default:'' }}">
       </div>
 
       <div class="input-group">
@@ -124,7 +139,9 @@
 
       <div>
       <div class="input-group">
-        <textarea class="form-control" placeholder="More about the house.. (optional)" rows="15" cols="20"></textarea>
+        <textarea class="form-control" placeholder="More about the house.. (optional)" rows="15" cols="20" name="info"
+        value="{{ house.additional_info|default:'' }}">
+        </textarea>
       </div>
       <div class="w-100 contact-form-button content-center">
         <button type="submit" class="btn btn-large">Save</button>
