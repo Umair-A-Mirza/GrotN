@@ -58,28 +58,41 @@
         <span class="input-group-text" >
           <i class="ph-money"></i>
         </span>
-        <input min="0" max="99999" type="number" class="form-control" placeholder="Monthly Budget (€)" name="budget">
+        <input min="0" max="99999" type="number" class="form-control" placeholder="Monthly Budget (€)" name="budget"
+        value="{{ tenant.budget|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-house"></i>
         </span>
-        <input type="text" class="form-control" placeholder="City">
+        <input type="text" class="form-control" placeholder="City" name="city"
+        value="{{ tenant.desiredCity|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-house"></i>
         </span>
-        <input type="text" class="form-control" placeholder="District">
+        <input type="text" class="form-control" placeholder="District" name="district"
+        value="{{ tenant.desiredDistrict|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-users"></i>
         </span>
         <select class="form-control" name="roommate">
+          {% if tenant.roommate == True %}
+          <option disabled>Open to Roommates</option>
+          <option selected value="yes">Yes</option>
+          <option value="no">No</option>
+          {% elif tenant.roommate == False %}
+          <option disabled>Open to Roommates</option>
+          <option value="yes">Yes</option>
+          <option selected value="no">No</option>
+          {% else %}
           <option selected disabled>Open to Roommates</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
+          {% endif %}
         </select>
       </div>
 
@@ -88,19 +101,28 @@
         <span class="input-group-text" >
           <i class="ph-user"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Full Name">
+        <input type="text" class="form-control" placeholder="Full Name" name="name"
+        value="{{ tenant.fullName|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-envelope-simple-open"></i>
         </span>
-        <input type="email" class="form-control" placeholder="Email Address" >
+        {% load custom_filters %}
+        {% with user_obj=tenant.user_id|get_user_from_id %}
+          {% if user_obj %}
+          <input disabled type="email" class="form-control" placeholder="Email Address" value="{{ user_obj.email }}" name="email">
+          {% else %}
+          <input type="email" class="form-control" placeholder="Email Address" name="email">
+          {% endif %}
+        {% endwith %}      
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-phone"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Phone Number">
+        <input type="text" class="form-control" placeholder="Phone Number" name="phone"
+        value="{{ tenant.phoneNumber|default:'' }}">
       </div>
 
       <h4>About You</h4>
@@ -112,7 +134,8 @@
           <span class="input-group-text">
             <i class="ph-pen"></i>
           </span>
-          <input type="text" class="form-control p-2 flex-1" placeholder="Activities">
+          <input type="text" class="form-control p-2 flex-1" placeholder="Activities" name="activities"
+          value="{{ tenant.activities|default:'' }}">
         </div>
       </div>
       <div>
@@ -123,7 +146,8 @@
           <span class="input-group-text">
             <i class="ph-pen"></i>
           </span>
-          <input type="text" class="form-control p-2 flex-1" placeholder="Interests">
+          <input type="text" class="form-control p-2 flex-1" placeholder="Interests" name="interests"
+          value="{{ tenant.interests|default:'' }}">
         </div>
       </div>
       <div>
@@ -134,11 +158,12 @@
           <span class="input-group-text">
             <i class="ph-pen"></i>
           </span>
-          <input type="text" class="form-control p-2 flex-1" placeholder="Preferences">
+          <input type="text" class="form-control p-2 flex-1" placeholder="Preferences" name="preferences"
+          value="{{ tenant.preferences|default:'' }}">
         </div>
       </div>
       <div class="input-group">
-        <textarea class="form-control" placeholder="More about you.. (optional)" rows="15" cols="20"></textarea>
+        <textarea class="form-control" placeholder="More about you.. (optional)" rows="15" cols="20">{{ tenant.about|striptags|default:'' }}</textarea>
       </div>
       <div class="w-100 contact-form-button content-center">
         <button type="submit" class="btn btn-large">Save</button>

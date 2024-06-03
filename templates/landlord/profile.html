@@ -45,6 +45,13 @@
           <h1>Fill out Profile</h1>
           <p>Set your preferences and get more 
             suitable tenants for your houses.</p>
+            {% if error %}
+            {% for key, value in error.items %}
+              <p style="color: #ff3050 !important;" class="error-msg">
+                {{ key }}: {{ value }}              
+              </p>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -58,13 +65,15 @@
         <span class="input-group-text" >
           <i class="ph-hash"></i>
         </span>
-        <input min="0" max="20" type="number" class="form-control" placeholder="No. of Houses" name="noHouses">
+        <input min="0" max="20" type="number" class="form-control" placeholder="No. of Houses" name="houses"
+        value="{{ landlord.noHouses|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-house"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Base City">
+        <input type="text" class="form-control" placeholder="Base City" name="city"
+        value="{{ landlord.baseCity|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
@@ -82,24 +91,33 @@
         <span class="input-group-text" >
           <i class="ph-user"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Full Name">
+        <input type="text" class="form-control" placeholder="Full Name" name="name"
+          value="{{ landlord.fullName|default:'' }}">
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-envelope-simple-open"></i>
         </span>
-        <input type="email" class="form-control" placeholder="Email Address" >
+        {% load custom_filters %}
+        {% with user_obj=landlord.user_id|get_user_from_id %}
+          {% if user_obj %}
+          <input disabled type="email" class="form-control" placeholder="Email Address" value="{{ user_obj.email }}" name="email">
+          {% else %}
+          <input type="email" class="form-control" placeholder="Email Address" name="email">
+          {% endif %}
+        {% endwith %}
       </div>
       <div class="input-group">
         <span class="input-group-text" >
           <i class="ph-phone"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Phone Number">
+        <input type="text" class="form-control" placeholder="Phone Number" name="phone"
+        value="{{ landlord.phoneNumber|default:'' }}">
       </div>
 
       <h4>About You</h4>
       <div class="input-group">
-        <textarea class="form-control" placeholder="More about you.. (optional)" rows="15" cols="20"></textarea>
+        <textarea class="form-control" placeholder="More about you.. (optional)" rows="15" cols="20" name="info">{{ landlord.additionalInfo|striptags|default:'' }}</textarea>
       </div>
       <div class="w-100 contact-form-button content-center">
         <button type="submit" class="btn btn-large">Save</button>

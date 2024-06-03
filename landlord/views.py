@@ -7,19 +7,51 @@ from .models import House
 # Create your views here.
 
 def profile(request):
-    return render(request, 'landlord/profile.html')
+    landlord = Landlord.objects.filter(user=request.user).first()
+
+    if request.method == 'POST':
+        noHouses = request.POST.get('houses')
+        baseCity = request.POST.get('city')
+        fullName = request.POST.get('name')
+        phoneNumber = request.POST.get('phone')
+        additionalInfo = request.POST.get('info').strip()
+
+        values = {
+            'noHouses': noHouses,
+            'baseCity': baseCity,
+            'fullName': fullName,
+            'phoneNumber': phoneNumber,
+            'additionalInfo': additionalInfo, 
+        }
+
+        try: 
+            Landlord.objects.filter(user=request.user).update(**values)
+        except ValidationError as e: 
+            print(e.message_dict)
+            return render(request, 'landlord/profile.html', {'landlord': vars(landlord), 'error': e.message_dict})            
+
+        return redirect('landlord:houses')
+
+    print(vars(landlord))
+    return render(request, 'landlord/profile.html', {'landlord': vars(landlord)})
+
 
 def houses(request):
     landlord = Landlord.objects.filter(user=request.user).first()
     houses = House.objects.filter(landlord=landlord)
 
-    return render(request, 'landlord/houses.html', {'houses': houses})  
+    return render(request, 'landlord/houses.html', {'landlord': vars(landlord), 'houses': houses})  
+
 
 def matches(request):
     return render(request, 'landlord/matches.html')
 
+
 def edit_house(request, house_id):
     house = House.objects.filter(house_id=house_id).first()
+
+    if not house: 
+        return redirect('landlord:houses')
 
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -60,8 +92,9 @@ def edit_house(request, house_id):
 
         return redirect('landlord:houses')
     
-
+    print(vars(house))
     return render(request, 'landlord/edit_house.html', {'house': vars(house)})
+
 
 def new_house(request): 
     if request.method == 'POST':

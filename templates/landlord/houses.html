@@ -50,16 +50,23 @@
                 <img src="https://hurthub.davidson.edu/wp-content/uploads/2024/04/Cagan-Oflazoglu-1.jpg" alt="agent">
               </div> -->
               <div style="height: 4rem;" class="agent-details--content-name d-flex align-items-center">
-                <h5>Cagan Oflazoglu</h5>
+                <h5>{{ landlord.fullName }}</h5>
               </div>
               <div class="agent-details--content-contact">
                 <a href="tel:+05656565656" class="phone d-flex align-items-center">
                   <i class="ph-phone"></i>
-                  <span>(302) 555-0107</span>
+                  <span>{{ landlord.phoneNumber }}</span>
                 </a>
                 <a href="tel:+05656565656" class="mail d-flex align-items-center">
                   <i class="ph-envelope-simple-open"></i>
-                  <span>cagan@gmail.com</span>
+                  <span>
+                    {% load custom_filters %}
+                    {% with user_obj=landlord.user_id|get_user_from_id %}
+                      {% if user_obj %}
+                          {{ user_obj.email }}
+                      {% endif %}
+                    {% endwith %}
+                  </span>
                 </a>
               </div>
               <div class="agent-details--content-button">
