@@ -103,6 +103,22 @@
 
 
 
+  <!-- Removing GET Parameters in URL -->
+  <script>
+    /* UNDONE */ 
+    function removeParamFromURL(url, param) {
+        const [path, searchParams] = url.split('?');
+        const newSearchParams = searchParams
+            ?.split('&')
+            .filter((p) => !(p === param || p.startsWith(`${param}=`)))
+            .join('&');
+        return newSearchParams ? `${path}?${newSearchParams}` : path;
+    }
+    if (window.location.href.includes('?')) {
+        // window.location.replace(removeParamFromURL(window.location.href, 'force'));
+    }
+  </script>
+
   <!-- Mark up for Script Section-->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0&libraries=geometry"></script>
   <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>

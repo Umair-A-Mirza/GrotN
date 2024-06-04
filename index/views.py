@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 def index(request): 
     if not request.user.is_authenticated:
         return render(request, 'index/index.html')
+    elif 'force' in request.GET: 
+        print("Main pageee")
+        return render(request, 'index/index.html')
     
     if request.user.first_name == "landlord": 
         return redirect('landlord:houses')

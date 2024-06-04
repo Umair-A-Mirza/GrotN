@@ -70,13 +70,38 @@
               {% if other_tenant %}
               <h4>{{ other_tenant.fullName }}</h4>
               <p>{{ other_tenant.about }}</p>
-              <form action="GET" class="flex align-items-center content-center">
+              <form method="POST" action="{% url 'tenant:matches' %}"
+                class="flex align-items-center content-center">
+                {% csrf_token %}
+                <input type="hidden" value="{{ other_tenant.id }}" name="partner_id">
                 <button class="btn d-block d-md-inline-block w-md-auto w-100"
-                style="background-color: #ff4112;">
+                style="background-color: #ff4112;:hover{background-color: #ff4112 !important;}"
+                name="reject"
+                type="submit">
                   Reject
                 </button>
-                <button class="btn d-block d-md-inline-block w-md-auto w-100">
+                <button class="btn d-block d-md-inline-block w-md-auto w-100"
+                name="shortlist"
+                type="submit">
                   Shortlist
+                </button>
+              </form>
+              {% elif tenant.roommate == False %}
+              <p style="color: #ca4112;">
+                You are currently set to not having roommates. Change your profile settings to rate potential roommates!</p>
+              <form method="GET" action="{% url 'tenant:profile' %}"
+                class="flex align-items-center content-center">
+                <button class="btn d-block d-md-inline-block w-md-auto w-100" type="submit" name="more">
+                  Profile Settings
+                </button>
+              </form>
+              {% else %}
+              <p>You rated all tenants suggested for you..</p>
+              <form method="POST" action="{% url 'tenant:matches' %}"
+                class="flex align-items-center content-center">
+                {% csrf_token %}
+                <button class="btn d-block d-md-inline-block w-md-auto w-100" type="submit" name="more">
+                  Get More
                 </button>
               </form>
               {% endif %}
@@ -151,6 +176,8 @@
             </div>
           </div> 
         </div>
+        {% empty %}
+        <p style="color: #ff3112;">No houses in your budget range!</p>
         {% endfor %}
 
       </div>
