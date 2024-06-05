@@ -2,7 +2,8 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 
 from authentication.models import Landlord
-from .models import House 
+from .models import House
+from .models import Housing
 
 # Create your views here.
 
@@ -44,7 +45,23 @@ def houses(request):
 
 
 def matches(request):
-    return render(request, 'landlord/matches.html')
+    housings = Housing.objects.filter(house__landlord__user=request.user, active=True)
+
+    if request.method == 'POST':
+        match_id = request.POST.get('id')
+        if 'cancel' in request.POST:
+            Housing.objects.filter(match_id=match_id).update(active=False, approved=False)
+        elif 'approve' in request.POST:
+            Housing.objects.filter(match_id=match_id).update(active=False, approved=True)
+        elif 'reconsider' in request.POST: 
+            for housing in Housing.objects.filter(house__landlord__user=request.user): 
+                housing.active = True
+                housing.save()
+        
+        print(match_id)
+        return redirect('landlord:matches')
+
+    return render(request, 'landlord/matches.html', {'housings': housings})
 
 
 def edit_house(request, house_id):

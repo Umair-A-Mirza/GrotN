@@ -26,9 +26,10 @@ class Housing(models.Model):
     tenants = models.ForeignKey('tenant.Match', on_delete=models.CASCADE, null=False)
     house = models.ForeignKey(House, on_delete=models.CASCADE, null=False)
     approved = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
     paid1 = models.BooleanField(default=False)
     paid2 = models.BooleanField(default=False)
 
+    # TODO: find a proper representation for Housing objects
     def __str__(self):
-        return self.tenants + ' ' + self.house
+        return str(self.match_id)

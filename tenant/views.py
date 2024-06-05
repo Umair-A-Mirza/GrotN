@@ -4,7 +4,9 @@ from django.db.models import Func, F
 
 from landlord.models import House
 from authentication.models import Tenant
-from .models import Swipe
+from .models import Swipe, Match
+
+from .utils import update_match
 
 # Create your views here.
 
@@ -42,16 +44,24 @@ def profile(request):
             print(e.message_dict)
 
         # create a single-person match
+        existing_swipes = Swipe.objects.filter(tenant=tenant)
         if not roommate:
-            existing_swipes = Swipe.objects.filter(tenant=tenant)
             for existing_swipe in existing_swipes:
-                existing_swipe.active = False
+                existing_swipe.active = existing_swipe.status
+                existing_swipe.status = False
                 existing_swipe.save()
+                # update_match(existing_swipe)
             
-            match = Swipe(tenant=tenant, partner=None, status=True)
+            match = Match(tenant1=tenant, tenant2=None, status=True)
             match.save()
         else: 
-            match = Swipe.objects.filter(tenant=tenant, partner=None).first()
+            for existing_swipe in existing_swipes:
+                existing_swipe.status = existing_swipe.active
+                existing_swipe.active = True
+                existing_swipe.save()
+                # update_match(existing_swipe)
+
+            match = Match.objects.filter(tenant1=tenant, tenant2=None).first()
             if match: 
                 match.delete()
 
@@ -78,7 +88,6 @@ def matches(request):
             return redirect('tenant:matches')
         
         # if user clicks on 'shortlist' or 'reject', update the swipe
-        # TODO: based on the old and current swipe, update the match!
         partner_id = request.POST.get('partner_id')
         partner = Tenant.objects.filter(id=partner_id).first()
 
@@ -87,11 +96,15 @@ def matches(request):
             existing_swipe.status = "shortlist" in request.POST
             existing_swipe.active = True
             existing_swipe.save()
+            # new_match = update_match(existing_swipe)
+            # print(f"Here is your new match: {new_match}")
             return redirect('tenant:matches')
         
         # if match doesn't exist, create a new one
         swipe = Swipe(tenant=tenant, partner=partner, status="shortlist" in request.POST)
         swipe.save()
+        # new_match = update_match(swipe)
+        # print(f"Here is your new match: {new_match}")
         return redirect('tenant:matches')
 
 
@@ -108,10 +121,8 @@ def matches(request):
     
     # Send one non-active match to the user
     for other_tenant in other_tenants: 
-        print(other_tenant)
-        match = Swipe.objects.filter(tenant=tenant, partner=other_tenant).first()
-        print(match)
-        if not match or not match.active: 
+        swipe = Swipe.objects.filter(tenant=tenant, partner=other_tenant).first()
+        if not swipe or not swipe.active: 
             return render(request, 'tenant/matches.html', {'houses': houses, 'other_tenant': other_tenant})
 
     return render(request, 'tenant/matches.html', {'houses': houses, 'tenant': tenant})
