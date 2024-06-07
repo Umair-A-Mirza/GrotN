@@ -47,9 +47,13 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      < class="row">
         {% for housing in housings %}
+        {% if forloop.counter == 1 %}
           <div class="housing mt-2">
+        {% else %} 
+          <div class="housing mt-5">
+        {% endif %}
               <form method="POST" class="flex align-items-center mt-2 flex-auto"
               action="{% url 'landlord:matches' %}">
                   {% csrf_token %}

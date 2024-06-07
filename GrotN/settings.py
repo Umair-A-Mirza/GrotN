@@ -21,9 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# PRODUCTION
 SECRET_KEY = 'django-insecure-qd&b26i1@rkutrm@!!6s!s7-g@qaa!(z0_d&@l_-khr=ud%0_%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# PRODUCTION
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -83,6 +85,7 @@ WSGI_APPLICATION = 'GrotN.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# PRODUCTION
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -125,6 +128,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# PRODUCTION
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -136,3 +140,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripe Payment Integration
+# PRODUCTION
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51POZMTP9S3FmSLqtIpkm09flmaiO5fCcfhLtoqfqgzo7DYUUwknDAUVwtMUKaAMsCFOh7IHhSXcVm3nEBdgVZ3hc00C4Bn0YhL'
+STRIPE_SECRET_KEY = 'sk_test_51POZMTP9S3FmSLqtF7VFzPHUGOdJCq5pIxnQM3lskLEwBBF3w35ydfbQHBNHz93SSbRSXhIzoYJOEsUAYOkeeA6500PDZHBKSz'

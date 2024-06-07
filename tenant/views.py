@@ -1,12 +1,16 @@
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
-from django.db.models import Func, F
+from django.db.models import Func, F, Q
 
-from landlord.models import House
+from landlord.models import House, Housing
 from authentication.models import Tenant
 from .models import Swipe, Match
 
-from .utils import update_match
+from django.conf import settings
+from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt 
+
+import stripe
 
 # Create your views here.
 
@@ -128,7 +132,24 @@ def matches(request):
     return render(request, 'tenant/matches.html', {'houses': houses, 'tenant': tenant})
 
 def housing(request):
-    return render(request, 'tenant/housing.html')
+    housings = Housing.objects.filter(
+        Q(tenants__tenant1__user=request.user) | 
+        Q(tenants__tenant2__user=request.user),
+        approved=True)
+
+    if request.method == 'POST':
+        match_id = request.POST.get('id')
+        housing = Housing.objects.filter(match_id=match_id).first()
+        if 'cancel' in request.POST:
+            housing.active = housing.approved
+            housing.approved = False
+            housing.save()
+
+        print(housing)
+        
+        return redirect('tenant:housing')
+
+    return render(request, 'tenant/housing.html', {'housings': housings})
 
 def view_house(request, house_id):
     house = House.objects.filter(house_id=house_id).first()
@@ -139,3 +160,44 @@ def view_house(request, house_id):
         return redirect('tenant:matches')
 
     return render(request, 'tenant/view_house.html', {'house': house, 'other_houses': other_houses})
+
+
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
+    
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        # PRODUCTION: domain_url = 'https://your-domain.com/'
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer] - if you have an existing Stripe Customer ID
+            # [payment_intent_data] - capture the payment later
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
+                line_items = [
+                    {
+                        'price': 'price_1POZVAP9S3FmSLqtSAlYdfSx',
+                        'quantity': 1,
+                    }
+                ]
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': str(e)})

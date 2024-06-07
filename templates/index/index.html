@@ -21,8 +21,8 @@
 
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
-    <link rel="icon" href="https://www.grotn.com/assets/images/logo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'images/newlogo.png' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'images/newlogo.png' %}" type="image/x-icon" />
 
 </head>
 <body>
@@ -104,8 +104,8 @@
 
 
   <!-- Removing GET Parameters in URL -->
+  <!-- UNDONE -->
   <script>
-    /* UNDONE */ 
     function removeParamFromURL(url, param) {
         const [path, searchParams] = url.split('?');
         const newSearchParams = searchParams
@@ -120,7 +120,6 @@
   </script>
 
   <!-- Mark up for Script Section-->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0&libraries=geometry"></script>
   <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendor/prism/prism.js' %}"></script>

@@ -58,7 +58,6 @@ def matches(request):
                 housing.active = True
                 housing.save()
         
-        print(match_id)
         return redirect('landlord:matches')
 
     return render(request, 'landlord/matches.html', {'housings': housings})
