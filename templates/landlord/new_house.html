@@ -139,9 +139,7 @@
 
       <div>
       <div class="input-group">
-        <textarea class="form-control" placeholder="More about the house.. (optional)" rows="15" cols="20" name="info"
-        value="{{ house.additional_info|default:'' }}">
-        </textarea>
+        <textarea class="form-control" placeholder="More about the house.. (optional)" rows="15" cols="20" name="info">{{ house.additional_info|default:'' }}</textarea>
       </div>
       <div class="w-100 contact-form-button content-center">
         <button type="submit" class="btn btn-large">Save</button>

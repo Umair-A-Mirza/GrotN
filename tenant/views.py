@@ -10,11 +10,17 @@ from django.conf import settings
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt 
 
+from django.contrib.auth.decorators import login_required
+
 import stripe
 
 # Create your views here.
 
+@login_required(login_url='index:index')
 def profile(request):
+    if "tenant" not in request.user.first_name: 
+        return redirect('landlord:houses')
+    
     tenant = Tenant.objects.filter(user=request.user).first()
 
     if request.method == 'POST':
@@ -73,7 +79,11 @@ def profile(request):
 
     return render(request, 'tenant/profile.html', {"tenant": tenant})
 
+@login_required(login_url='index:index')
 def matches(request):
+    if "tenant" not in request.user.first_name: 
+        return redirect('landlord:houses')
+    
     # Get the logged in tenant and their budget
     tenant = Tenant.objects.filter(user=request.user).first()
     budget = tenant.budget
@@ -131,7 +141,11 @@ def matches(request):
 
     return render(request, 'tenant/matches.html', {'houses': houses, 'tenant': tenant})
 
+@login_required(login_url='index:index')
 def housing(request):
+    if "tenant" not in request.user.first_name: 
+        return redirect('landlord:houses')
+    
     housings = Housing.objects.filter(
         Q(tenants__tenant1__user=request.user) | 
         Q(tenants__tenant2__user=request.user),
@@ -151,7 +165,11 @@ def housing(request):
 
     return render(request, 'tenant/housing.html', {'housings': housings})
 
+@login_required(login_url='index:index')
 def view_house(request, house_id):
+    if "tenant" not in request.user.first_name: 
+        return redirect('landlord:houses')
+    
     house = House.objects.filter(house_id=house_id).first()
     landlord = house.landlord
     other_houses = House.objects.filter(landlord=landlord).exclude(house_id=house_id).order_by('?')[:3]

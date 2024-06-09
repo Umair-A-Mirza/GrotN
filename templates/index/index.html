@@ -68,7 +68,6 @@
   -->
   {% include 'index/_properties.html' %}
 
-
   {% comment %}
   <!-- 
     #############
@@ -102,7 +101,6 @@
   {% include 'index/_login_modal.html' %}
 
 
-
   <!-- Removing GET Parameters in URL -->
   <!-- UNDONE -->
   <script>
@@ -131,5 +129,17 @@
   <script src="{% static 'vendor/scrollit/scrollit.min.js' %}"></script>
   <script src="{% static 'vendor/magnific-popup/magnific-popup.min.js' %}"></script>
   <script src="{% static 'js/script.js' %}"></script>
+
+  <!-- Script for Login Modal -->
+  {% if request.session.href %}
+  <script>
+    $(document).ready(function(){
+      let href = "{{ request.session.href }}";
+      $(href).modal("show");
+      console.log("{{ request.session.message }}")
+    });
+  </script>
+  {% endif %}
+
 </body>
 </html>

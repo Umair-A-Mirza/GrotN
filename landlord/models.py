@@ -18,7 +18,7 @@ class House(models.Model):
     landlord = models.ForeignKey('authentication.Landlord', on_delete=models.CASCADE, null=False)
 
     def __str__(self):
-        return self.address
+        return self.address if self.address else 'House ' + str(self.house_id)
     
 
 class Housing(models.Model):

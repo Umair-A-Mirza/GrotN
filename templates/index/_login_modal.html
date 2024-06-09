@@ -6,9 +6,9 @@
           <h4  id="loginLabel">Tenant Log In</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>                     
           </button>
         </div>
@@ -19,12 +19,17 @@
                     method="POST"
                     action="{% url 'authentication:tenant-signin' %}">
                     {% csrf_token %}
+                    <p class="error-text">
+                      {% if request.session.message %}
+                        {{ request.session.message }}
+                      {% endif %}
+                    </p>    
                 <div class="col-12">
                   <div class="input-group">
                     <span class="input-group-text" >
                       <i class="ph-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Email address" name="email">
+                    <input type="text" class="form-control" placeholder="Email address" name="email" required>
                   </div>
                 </div>
                 <div class="col-12">
@@ -32,7 +37,7 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                   </div>
                 </div>
                 <div class="col-6">
@@ -77,9 +82,9 @@
           <h4 id="createAccountLabel">Tenant Signup</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>             
             
           </button>
@@ -91,12 +96,18 @@
                     method="POST"
                     action="{% url 'authentication:tenant-register' %}">
                 {% csrf_token %}
+                <p class="error-text">
+                  {% if request.session.message %}
+                    {{ request.session.message }}
+                  {% endif %}
+                </p>
                 <div class="col-sm-6">
                   <div class="input-group">
                     <span class="input-group-text" >
                       <i class="ph-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Full Name" name="name">
+                    <input type="text" class="form-control" placeholder="Full Name" name="name" required
+                    value="{{ request.session.tenantData.name|first|default:'' }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -104,7 +115,8 @@
                     <span class="input-group-text" >
                       <i class="ph-envelope-simple-open"></i>
                     </span>
-                    <input type="email" class="form-control" placeholder="Email Address" name="email">
+                    <input type="email" class="form-control" placeholder="Email Address" name="email" required
+                    value="{{ request.session.tenantData.email|first|default:'' }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -112,7 +124,8 @@
                     <span class="input-group-text" >
                       <i class="ph-phone"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Phone Number" name="phone">
+                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" required
+                    value="{{ request.session.tenantData.phone|first|default:'' }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -120,7 +133,8 @@
                     <span class="input-group-text" >
                       <i class="ph-map-pin"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Address" name="address">
+                    <input type="text" class="form-control" placeholder="City" name="city" required
+                    value="{{ request.session.tenantData.city|first|default:'' }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -128,7 +142,8 @@
                     <span class="input-group-text" >
                       <i class="ph-money"></i>
                     </span>
-                    <input min="0" max="99999" type="number" class="form-control" placeholder="Monthly Budget (€)" name="budget">
+                    <input min="0" max="99999" type="number" class="form-control" placeholder="Monthly Budget (€)" name="budget" required
+                    value="{{ request.session.tenantData.budget|first|default:'' }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -136,7 +151,7 @@
                     <span class="input-group-text" >
                       <i class="ph-users"></i>
                     </span>
-                    <select class="form-control" name="roommate">
+                    <select class="form-control" name="roommate" required>
                       <option selected disabled>Open to Roommates</option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
@@ -148,7 +163,7 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -156,22 +171,22 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Re-Password" name="password2">
+                    <input type="password" class="form-control" placeholder="Re-Password" name="password2" required>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" required>
                     <label class="form-check-label" for="flexCheckDefault2">
-                      <span>I agree to All </span><a href="">Terms & Conditions</a> 
-                    </label>
+                      <span>I agree to All </span><a href="{% url 'index:tos' %}">Terms & Conditions</a> 
+                    </label> 
                   </div>
                 </div>
                 <div class="w-100 contact-form-button">
                   <button type="submit" class="btn btn-large d-block w-100">Create Account</button>
                 </div>
                 <div class="w-100 contact-form-button">
-                  <button type="submit" class="btn btn-large btn-outline d-block w-100  mt-3">
+                  <button class="btn btn-large btn-outline d-block w-100  mt-3">
                     <i class="ph-google-logo align-top"></i>
                     <span>  Create Account with Google </span> 
                   </button>
@@ -197,9 +212,9 @@
           <h4  id="loginLabel">Landlord Log In</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>                     
           </button>
         </div>
@@ -210,12 +225,17 @@
                     method="POST"
                     action="{% url 'authentication:landlord-signin' %}">
                 {% csrf_token %}
+                <p class="error-text">
+                  {% if request.session.message %}
+                    {{ request.session.message }}
+                  {% endif %}
+                </p>
                 <div class="col-12">
                   <div class="input-group">
                     <span class="input-group-text" >
                       <i class="ph-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Email address" name="email">
+                    <input type="text" class="form-control" placeholder="Email address" name="email" required>
                   </div>
                 </div>
                 <div class="col-12">
@@ -223,7 +243,7 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                   </div>
                 </div>
                 <div class="col-6">
@@ -243,7 +263,7 @@
                   <button type="submit" class="btn btn-large d-block w-100">Log In</button>
                 </div>
                 <div class="w-100 contact-form-button">
-                  <button type="submit" class="btn btn-large btn-outline d-block w-100  mt-3">
+                  <button class="btn btn-large btn-outline d-block w-100  mt-3">
                     <i class="ph-google-logo align-top"></i>
                     <span>  Log In with Google </span> 
                   </button>
@@ -268,9 +288,9 @@
           <h4 id="createAccountLabel">Landlord Signup</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>             
             
           </button>
@@ -287,7 +307,7 @@
                     <span class="input-group-text" >
                       <i class="ph-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Full Name" name="name">
+                    <input type="text" class="form-control" placeholder="Full Name" name="name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -295,7 +315,7 @@
                     <span class="input-group-text" >
                       <i class="ph-envelope-simple-open"></i>
                     </span>
-                    <input type="email" class="form-control" placeholder="Email Address" name="email">
+                    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -303,7 +323,7 @@
                     <span class="input-group-text" >
                       <i class="ph-phone"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Phone Number" name="phone">
+                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -319,7 +339,7 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -327,14 +347,14 @@
                     <span class="input-group-text" >
                       <i class="ph-keyhole"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Re-Password" name="password2">
+                    <input type="password" class="form-control" placeholder="Re-Password" name="password2" required>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexlandlordCheckDefault2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexlandlordCheckDefault2" required>
                     <label class="form-check-label" for="flexlandlordCheckDefault2">
-                      <span>I agree to All </span><a href="">Terms & Conditions</a> 
+                      <span>I agree to All </span><a href="{% url 'index:tos' %}">Terms & Conditions</a> 
                     </label>
                   </div>
                 </div>
@@ -342,7 +362,7 @@
                   <button type="submit" class="btn btn-large d-block w-100">Create Account</button>
                 </div>
                 <div class="w-100 contact-form-button">
-                  <button type="submit" class="btn btn-large btn-outline d-block w-100  mt-3">
+                  <button class="btn btn-large btn-outline d-block w-100  mt-3">
                     <i class="ph-google-logo align-top"></i>
                     <span>  Create Account with Google </span> 
                   </button>
@@ -369,9 +389,9 @@
           <h4  id="loginLabel2">Reset Password</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>             
           </button>
           
@@ -418,9 +438,9 @@
           <h4  id="loginLabel3">Enter OTP</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>             
           </button>
           
@@ -471,9 +491,9 @@
           <h4  id="loginLabel4">Reset Password</h4>
           <button type="button" class="btn-modal-close" data-bs-dismiss="modal" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1C4456" stroke-width="2.3" stroke-miterlimit="10"></path>
-                <path d="M15 9L9 15" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 15L9 9" stroke="#1C4456" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#624B39" stroke-width="2.3" stroke-miterlimit="10"></path>
+                <path d="M15 9L9 15" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M15 15L9 9" stroke="#624B39" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>             
           </button>
           

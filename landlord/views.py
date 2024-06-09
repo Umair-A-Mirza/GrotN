@@ -5,9 +5,15 @@ from authentication.models import Landlord
 from .models import House
 from .models import Housing
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
+@login_required(login_url='index:index')
 def profile(request):
+    if "landlord" not in request.user.first_name: 
+        return redirect('tenant:matches')
+
     landlord = Landlord.objects.filter(user=request.user).first()
 
     if request.method == 'POST':
@@ -36,15 +42,21 @@ def profile(request):
     print(vars(landlord))
     return render(request, 'landlord/profile.html', {'landlord': vars(landlord)})
 
-
+@login_required(login_url='index:index')
 def houses(request):
+    if "landlord" not in request.user.first_name: 
+        return redirect('tenant:matches')
+
     landlord = Landlord.objects.filter(user=request.user).first()
     houses = House.objects.filter(landlord=landlord)
 
     return render(request, 'landlord/houses.html', {'landlord': vars(landlord), 'houses': houses})  
 
-
+@login_required(login_url='index:index')
 def matches(request):
+    if "landlord" not in request.user.first_name: 
+        return redirect('tenant:matches')
+
     housings = Housing.objects.filter(house__landlord__user=request.user, active=True)
 
     if request.method == 'POST':
@@ -62,8 +74,11 @@ def matches(request):
 
     return render(request, 'landlord/matches.html', {'housings': housings})
 
-
+@login_required(login_url='index:index')
 def edit_house(request, house_id):
+    if "landlord" not in request.user.first_name: 
+        return redirect('tenant:matches')
+
     house = House.objects.filter(house_id=house_id).first()
 
     if not house: 
@@ -111,8 +126,11 @@ def edit_house(request, house_id):
     print(vars(house))
     return render(request, 'landlord/edit_house.html', {'house': vars(house)})
 
-
+@login_required(login_url='index:index')
 def new_house(request): 
+    if "landlord" not in request.user.first_name: 
+        return redirect('tenant:matches')
+
     if request.method == 'POST':
         title = request.POST.get('title')
         price = request.POST.get('price')
