@@ -165,10 +165,9 @@ def housing(request):
 
     return render(request, 'tenant/housing.html', {'housings': housings})
 
-@login_required(login_url='index:index')
+# No need to be logged in to view a house
 def view_house(request, house_id):
-    if "tenant" not in request.user.first_name: 
-        return redirect('landlord:houses')
+    # landlords can also view a house, so no logic here
     
     house = House.objects.filter(house_id=house_id).first()
     landlord = house.landlord
