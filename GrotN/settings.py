@@ -98,8 +98,7 @@ DATABASES = {
 
         # DEVELOPMENT
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/tmp', 'db.sqlite3'),
-
+        'NAME': BASE_DIR / os.path.join('tmp', 'db.sqlite3'),
     }
 }
 
