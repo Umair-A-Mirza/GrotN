@@ -59,6 +59,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://grotn-production.up.railway.app',
+    'https://grotn.com'
+]
+
 ROOT_URLCONF = 'GrotN.urls'
 
 TEMPLATES = [
