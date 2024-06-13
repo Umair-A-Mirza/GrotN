@@ -166,3 +166,7 @@ cython_debug/
 
 # personal todo items
 todo.txt
+
+# Unused Deployment 
+Procfile
+vercel.json
