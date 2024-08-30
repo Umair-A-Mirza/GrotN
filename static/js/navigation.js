@@ -86,6 +86,7 @@ const guest = `
       >List your property!</a
     >
     <button
+      id="primary"
       class="inline-block h-10 py-1 px-6 rounded-lg flex justify-center items-center bg-txt text-white transition ease-in duration-500 hover:bg-bttns"
       onclick="proceed(event)"
     >
@@ -102,6 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.querySelector("body");
   // Add conditions to check if the user is logged in or not, along with the type of user, and then the version of the navbar to add from the options above.
   body.insertAdjacentHTML("afterbegin", guest);
+  if (window.location.href.includes("login")) {
+    console.log(window.location.href);
+    document.getElementById("primary").innerText = "Sign Up";
+  }
 });
 
 /**
@@ -115,6 +120,6 @@ const showResources = () => {
 const proceed = (e) => {
   const button = e.target;
   button.innerText.includes("Log In")
-    ? (window.location.href = "/templates/tenant/tenant_login.html")
-    : (window.location.href = "/templates/tenant/tenant_signup.html");
+    ? (window.location.href = "/tenant/login")
+    : (window.location.href = "/tenant/signup");
 };

@@ -16,6 +16,12 @@ import stripe
 
 # Create your views here.
 
+def login(request):
+    return render(request, 'tenant/login.html')
+
+def signup(request):
+    return render(request, 'tenant/signup.html')
+
 @login_required(login_url='index:index')
 def profile(request):
     if "tenant" not in request.user.first_name: 

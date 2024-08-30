@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}My Website{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Stylesheets -->
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'vendor/bootstrap/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendor/prism/prism.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendor/phosphor-icons/css/icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendor/magnific-popup/magnific-popup.css' %}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/newlogo.png' %}"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and Tailwind CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="{% static 'src/styles.css' %}" rel="stylesheet" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              custom: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              back_1: "rgba(254, 255, 255, 0.5)",
+              lgrey: "rgba(23,37,42,0.50)",
+              txt: "rgba(23, 37, 42, 1)",
+              bttns: "rgba(58, 175, 169, 1)",
+              customBrown: "#9B775C",
+              darkGreen: "#17252a",
+            },
+          },
+        },
+      };
+    </script> -->
+
+    <!-- Custom Scripts -->
+    <script defer src="{% static 'js/navigation.js' %}"></script>
+    <script defer src="{% static 'js/footer.js' %}"></script>
+
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body class="font-custom">
+    <div id="screen" class="w-full h-full">
+      {% block content %}
+      <!-- Content goes here -->
+      {% endblock %}
+    </div>
+    <!-- Mark up for Script Section-->
+    <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/prism/prism.js' %}"></script>
+    <script src="{% static 'vendor/isotope/isotope.min.js' %}"></script>
+    <script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor//counter-up/countup.js' %}"></script>
+    <script src="{% static 'vendor/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/scrollit/scrollit.min.js' %}"></script>
+    <script src="{% static 'vendor/magnific-popup/magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
