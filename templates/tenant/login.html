@@ -41,6 +41,165 @@
     <script defer src="{% static 'js/footer.js' %}"></script>
   </head>
   <body class="font-custom">
+    <div id="main_screen" class="flex mt-12 mb-12 w-full box-border">
+      <div
+        id="left_col"
+        class="bg-center bg-cover bg-[url('/static/images/tenant_login.jpeg')] p-4 rounded-lg min-h-[500px] w-[35%]"
+      ></div>
+      <div id="right_col" class="w-[65%] items-center">
+        <div id="login_modal" class="flex flex-col pl-12 pt-12 max-w-[500px]">
+          <div id="modal_title" class="text-secondary text-3xl mb-6">
+            Tenant
+          </div>
+          <div class="text-lg pb-1">Email Address</div>
+          <div class="relative">
+            <svg
+              class="absolute px-2 py-3"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z"
+                stroke="#6D6D6D"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
+                stroke="#6D6D6D"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <input
+              class="text-lg border-2 border-layer w-full h-6 mb-2 box-border rounded-lg bg-none focus:outline-2 focus:outline-bttns"
+              type="email"
+            />
+          </div>
+          <div class="text-lg pb-1">Password</div>
+          <div class="relative pass_container">
+            <svg
+              class="absolute px-2 py-3"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 10V8C6 4.69 7 2 12 2C17 2 18 4.69 18 8V10"
+                stroke="#6D6D6D"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 22H7C3 22 2 21 2 17V15C2 11 3 10 7 10H17C21 10 22 11 22 15V17C22 21 21 22 17 22Z"
+                stroke="#6D6D6D"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15.9965 16H16.0054"
+                stroke="#6D6D6D"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M11.9955 16H12.0045"
+                stroke="#6D6D6D"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M7.99451 16H8.00349"
+                stroke="#6D6D6D"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <input
+              class="text-lg border-2 border-layer w-full h-6 mb-2 box-border rounded-lg bg-none focus:outline-2 focus:outline-bttns password_input"
+              type="password"
+            />
+          </div>
+          <div id="extras" class="text-lg flex justify-between">
+            <div class="flex justify-between">
+              <input
+                id="remember"
+                class="w-4 h-4 cursor-pointer mr-2 mt-1"
+                type="checkbox"
+              />
+              <div>Remember Me</div>
+            </div>
+            <div id="landlord" class="text-secondary cursor-pointer">
+              I'm a Landlord
+            </div>
+          </div>
+          <div id="login_types" class="flex flex-col items-center gap-3 pt-3">
+            <button
+              id="login"
+              class="bg-black text-white border-none p-2 min-w-32 text-lg rounded-lg cursor-pointer box-border hover:bg-bttns text-layer transition-colors duration-400"
+            >
+              Log In
+            </button>
+            <div
+              class="border-2 border-layer text-center transition-colors hover:bg-bttns hover:text-white duration-400 p-2 min-w-32 text-lg rounded-lg cursor-pointer box-border flex"
+              id="google_container"
+            >
+              <svg
+                id="google_icon"
+                class="pr-2 pl-2"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22.7137 10.4596H21.8747V10.4163H12.4997V14.583H18.3867C17.5278 17.0085 15.22 18.7497 12.4997 18.7497C9.04811 18.7497 6.24967 15.9512 6.24967 12.4997C6.24967 9.04811 9.04811 6.24967 12.4997 6.24967C14.0929 6.24967 15.5424 6.85072 16.646 7.83249L19.5924 4.88613C17.732 3.15228 15.2434 2.08301 12.4997 2.08301C6.74707 2.08301 2.08301 6.74707 2.08301 12.4997C2.08301 18.2523 6.74707 22.9163 12.4997 22.9163C18.2523 22.9163 22.9163 18.2523 22.9163 12.4997C22.9163 11.8012 22.8445 11.1195 22.7137 10.4596Z"
+                  fill="#FFC107"
+                />
+                <path
+                  d="M3.28418 7.65124L6.70658 10.1611C7.63262 7.86842 9.87533 6.24967 12.4998 6.24967C14.093 6.24967 15.5425 6.85072 16.6462 7.83249L19.5925 4.88613C17.7321 3.15228 15.2436 2.08301 12.4998 2.08301C8.49876 2.08301 5.02897 4.34186 3.28418 7.65124Z"
+                  fill="#FF3D00"
+                />
+                <path
+                  d="M12.5 22.9165C15.1906 22.9165 17.6354 21.8868 19.4839 20.2124L16.2599 17.4842C15.1789 18.3063 13.8581 18.7509 12.5 18.7499C9.79062 18.7499 7.4901 17.0223 6.62344 14.6113L3.22656 17.2285C4.95052 20.602 8.45156 22.9165 12.5 22.9165Z"
+                  fill="#4CAF50"
+                />
+                <path
+                  d="M22.7141 10.4602H21.875V10.417H12.5V14.5837H18.387C17.9762 15.738 17.2361 16.7468 16.2583 17.4852L16.2599 17.4842L19.4839 20.2123C19.2557 20.4196 22.9167 17.7087 22.9167 12.5003C22.9167 11.8019 22.8448 11.1201 22.7141 10.4602Z"
+                  fill="#1976D2"
+                />
+              </svg>
+              <div>Log In with Google</div>
+            </div>
+            <div id="sign_up" class="flex">
+              Get started with
+              <div
+                id="sign_up_link"
+                class="text-secondary font-semibold pl-2 cursor-pointer"
+              >
+                GrotN
+              </div>
+              !
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Mark up for Script Section-->
     <script src="{% static 'vendor/jQuery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>

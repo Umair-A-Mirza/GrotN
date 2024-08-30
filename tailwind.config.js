@@ -13,6 +13,8 @@ module.exports = {
         bttns: "rgba(58, 175, 169, 1)",
         customBrown: "#9B775C",
         darkGreen: "#17252a",
+        secondary: "#2B7A78",
+        layer: "#def1f2",
       },
     },
   },
