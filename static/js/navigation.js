@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add conditions to check if the user is logged in or not, along with the type of user, and then the version of the navbar to add from the options above.
   body.insertAdjacentHTML("afterbegin", guest);
   if (window.location.href.includes("login")) {
-    console.log(window.location.href);
     document.getElementById("primary").innerText = "Sign Up";
   }
 });

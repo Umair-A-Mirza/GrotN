@@ -665,6 +665,11 @@ video {
   margin-right: auto;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -699,6 +704,10 @@ video {
 
 .mr-10 {
   margin-right: 2.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mr-6 {
@@ -781,8 +790,16 @@ video {
   height: 8rem;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .h-full {
   height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .max-h-24 {
@@ -793,8 +810,16 @@ video {
   width: 8rem;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
 .w-80 {
   width: 20rem;
+}
+
+.w-\[40\%\] {
+  width: 40%;
 }
 
 .w-\[60\%\] {
@@ -819,6 +844,10 @@ video {
 
 .max-w-\[400px\] {
   max-width: 400px;
+}
+
+.max-w-\[600px\] {
+  max-width: 600px;
 }
 
 .flex-1 {
@@ -857,6 +886,10 @@ video {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -873,8 +906,16 @@ video {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-t-2 {
   border-top-width: 2px;
+}
+
+.border-none {
+  border-style: none;
 }
 
 .border-white {
@@ -884,6 +925,11 @@ video {
 
 .bg-back_1 {
   background-color: rgba(254, 255, 255, 0.5);
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-bttns {
@@ -912,12 +958,21 @@ video {
   background-image: url('/static/images/home.jpeg');
 }
 
+.bg-none {
+  background-image: none;
+}
+
 .bg-cover {
   background-size: cover;
 }
 
 .bg-center {
   background-position: center;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-2 {
@@ -935,6 +990,11 @@ video {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-48 {
@@ -967,12 +1027,24 @@ video {
   padding-bottom: 1rem;
 }
 
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
 
 .pb-4 {
   padding-bottom: 1rem;
+}
+
+.pl-12 {
+  padding-left: 3rem;
+}
+
+.pl-24 {
+  padding-left: 6rem;
 }
 
 .pl-6 {
@@ -987,8 +1059,24 @@ video {
   padding-right: 0.75rem;
 }
 
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .text-center {
@@ -1048,6 +1136,10 @@ video {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.text-alternateBlue {
+  color: rgba(43, 122, 120, 1);
 }
 
 .text-bttns {
@@ -1132,6 +1224,14 @@ video {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:outline-2:focus {
+  outline-width: 2px;
+}
+
+.focus\:outline-bttns:focus {
+  outline-color: rgba(58, 175, 169, 1);
 }
 
 .group:hover .group-hover\:text-bttns {
